@@ -63,9 +63,31 @@ Test the code works
 	led1.turn_on()
 	led1.turn_off()
 
-Download the code [for the server](https://github.com/stephenvisser/GarageApp/blob/master/server.py) and install on py
+Create a new server.py on the py, containing the following:
 
-Then run curl to toggle relay:
+	import piface.pfio
+	import BaseHTTPServer
+	from time import sleep
+
+	piface.pfio.init()
+	relay = piface.pfio.Relay(1)
+
+	class PiServer(BaseHTTPServer.BaseHTTPRequestHandler):
+	  def do_GET(self):
+	    relay.turn_on()
+	    sleep(0.5)
+	    relay.turn_off()
+	    print "Toggle"
+	    self.send_response(200)
+
+	httpd = BaseHTTPServer.HTTPServer(('', 8000), PiServer)
+	httpd.serve_forever()
+
+... and run it:
+
+	nohup python server.py &
+
+Then on a client computer, run curl to toggle relay:
 
 	curl http://visserpi:8000
 	
