@@ -140,11 +140,11 @@ pre code {
 	}
 }
 </style>
-<title>Parts:</title>
+<title>Instructions:</title>
 
 </head>
 <body>
-<h3>Parts:</h3>
+<h3>Instructions:</h3>
 
 <p>Setup WiFi:</p>
 
@@ -157,22 +157,30 @@ pre code {
 iface lo inet loopback
 iface eth0 inet dhcp
 
-#auto wlan0
+#Start wpa_supplicant daemon automatically (equivalent to auto?)
+
 allow-hotplug wlan0
 iface wlan0 inet manual
-wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+    #Because we don't specify wpa-driver, defaults to wext
+    #We use wpa-roam which adds a layer on top of ifupdown to 
+    #find new networks as they arrive. Not strictly necessary,
+    #but helpful when moving from network to network
+
+    wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+#Each wpa_supplicant can optionally have an id_str
+#which will allow us to configure each interface here.
+#For simplicity, we just take all and then make them into
+#dhcp connections. Alternatively, we could do static IPs.
+#This line should always be present, however
+
 iface default inet dhcp
 </code></pre>
 
-<p>/etc/wpa_supplicant/wpa_supplicant.conf</p>
+<p>Add the results of wpa_passphrase to the /etc/wpa_supplicant/wpa_supplicant.conf file:</p>
 
-<pre><code>network={
-    ssid="YOURSSID"
-    scan_ssid=1
-    key_mgmt=WPA-PSK
-    proto=WPA
-    psk="YOURPASSWORD"
-}
+<pre><code>wpa_passphrase 'SSID' 'passphrase'
 </code></pre>
 
 <p>Change hostname:</p>
@@ -180,11 +188,6 @@ iface default inet dhcp
 <p>/etc/hosts</p>
 
 <p>/etc/hostname</p>
-
-<p>Install <a href="https://github.com/thomasmacpherson/piface">piface dependencies</a></p>
-
-<pre><code>$ apt-get install python-dev python-gtk2-dev git
-</code></pre>
 
 <p>Get the python pyface packages:</p>
 
