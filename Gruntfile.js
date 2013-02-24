@@ -33,6 +33,10 @@ module.exports = function( grunt ) {
       images: {
         files: 'app/images/*',
         tasks: ['copy:images', 'livereload']
+      },
+      js: {
+        files: 'app/js/*',
+        tasks: ['copy:js', 'livereload']
       }
     },
     compass: {
@@ -49,6 +53,16 @@ module.exports = function( grunt ) {
       html: {
         src: 'app/index.html', 
         dest: 'temp/index.html'
+      },
+      js: {
+        files: [
+          {
+            expand: true,
+            cwd: 'app/js',
+            src: '*',
+            dest: 'temp/js/'
+          }
+        ]
       },
       images: {
         files: [

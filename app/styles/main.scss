@@ -1,1 +1,10 @@
 @import "bootstrap/bootstrap";
+
+.door {
+	@include transition(all 1s ease-out);
+}
+
+.door.open {
+  @include transition(all 1s ease-out);
+	@include translate(0, -500px);
+}

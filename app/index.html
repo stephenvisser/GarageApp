@@ -6,7 +6,7 @@
         <title>Garage Door App</title>
         <meta name="description" content="An app for controlling a garage door">
         <meta name="viewport" content="width=device-width">
-
+        <script type="text/javascript" src="js/hammer.js"></script>
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
      
         <link rel="stylesheet" href="styles/main.css">
@@ -21,9 +21,9 @@
         </div>
         <div class="container" style="margin-top:50px">
             <div class="hero-unit">
-                <h1>Hello Stephen!</h1>
-                <img src="images/door.jpg"></img>
+                <img id="door" ondragstart="return false;" src="images/door.jpg" style="position:relative;" class="door"></img>
             </div>
         </div>
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
