@@ -5,7 +5,13 @@ Using Raspberry Pi, Trigger.IO to build a garage opener app. For WIP docs, check
 
 To hack away on the web app, just run a
 
-```sh
+```bash
 npm install
 grunt
+```
+
+If you've never used grunt before, you will have to install the grunt-cli: 
+
+```bash
+npm -g install grunt-cli
 ```
