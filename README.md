@@ -1,4 +1,4 @@
-GarageApp
+Garage App
 =========
 
-A remote control for a garage door using a Raspberry Pi
+Using Raspberry Pi, Trigger.IO to build a garage opener app. For WIP docs, checkout [setup instructions here](http://stephenvisser.github.com/GarageApp/)
