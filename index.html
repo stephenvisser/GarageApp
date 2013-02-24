@@ -1,0 +1,67 @@
+<h3>Parts:</h3>
+
+<p>Setup WiFi:</p>
+
+<p>From <a href="http://svay.com/blog/setting-up-a-wifi-connection-on-the-raspberrypi/">here</a></p>
+
+<p>/etc/network/interfaces</p>
+
+<pre><code>auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+#auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+</code></pre>
+
+<p>/etc/wpa_supplicant/wpa_supplicant.conf</p>
+
+<pre><code>network={
+		ssid="YOURSSID"
+		scan_ssid=1
+		key_mgmt=WPA-PSK
+		proto=WPA
+		psk="YOURPASSWORD"
+}
+</code></pre>
+
+<p>Change hostname:</p>
+
+<p>/etc/hosts</p>
+
+<p>/etc/hostname</p>
+
+<p>Install <a href="https://github.com/thomasmacpherson/piface">piface dependencies</a></p>
+
+<pre><code>$ apt-get install python-dev python-gtk2-dev git
+</code></pre>
+
+<p>Get the python pyface packages:</p>
+
+<pre><code>$ git clone https://github.com/thomasmacpherson/piface.git
+</code></pre>
+
+<p>Install using</p>
+
+<pre><code>$ cd piface/python/
+$ sudo python setup.py install
+</code></pre>
+
+<p>Make sure permissions are good</p>
+
+<pre><code>sudo piface/scripts/spidev-setup
+sudo reboot
+</code></pre>
+
+<p>Test the code works</p>
+
+<pre><code>import piface.pfio
+piface.pfio.init()
+led1 = piface.pfio.LED(1)   
+led1.turn_on()
+led1.turn_off()
+</code></pre>
