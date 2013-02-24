@@ -29,6 +29,10 @@ module.exports = function( grunt ) {
       html: {
         files: 'app/index.html',
         tasks: ['copy:html', 'livereload']
+      },
+      images: {
+        files: 'app/images/*',
+        tasks: ['copy:images', 'livereload']
       }
     },
     compass: {
@@ -45,6 +49,16 @@ module.exports = function( grunt ) {
       html: {
         src: 'app/index.html', 
         dest: 'temp/index.html'
+      },
+      images: {
+        files: [
+          {
+            expand: true,
+            cwd: 'app/images',
+            src: '*',
+            dest: 'temp/images/'
+          }
+        ]
       }
     },
     open : {
@@ -61,5 +75,5 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-open');
   
   // Default task(s).
-  grunt.registerTask('default', ['livereload-start', 'connect', 'open', 'regarde']);  
+  grunt.registerTask('default', ['livereload-start', 'compass', 'copy', 'connect', 'open', 'regarde']);  
 };
