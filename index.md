@@ -85,11 +85,9 @@ Create a new server.py on the py, containing the following:
 
 ... and run it:
 
-	nohup python server.py &
+	nohup sudo python server.py temp/&
 
-Then on a client computer, run curl to toggle relay:
-
-	curl http://visserpi:8000
+Then on a client computer, navigate your browser to whatever the pi's DNS is and swipe away!
 	
 
 
